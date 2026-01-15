@@ -78,8 +78,6 @@ const EMOJI_IDS = {
   otro:         { id: "1431415219367842032", name: "emoji_106" }
 };
 
-const PANEL_THUMBNAIL = "https://media.discordapp.net/attachments/1420914042251509990/1430698897927307347/79794618.png";
-
 const CATEGORY_MESSAGES = {
   discord_bots: "Este ticket es para consultas sobre bots de Discord. Por favor, describe qué bot necesitas o qué problema tienes con algún bot.",
   report_user: "Este ticket es para reportar a un usuario. Por favor, proporciona:\n• El nombre/ID del usuario\n• Qué hizo\n• Pruebas (capturas, videos)",
@@ -183,7 +181,6 @@ client.on("messageCreate", async (message) => {
         "En este canal puedes abrir un ticket para hablar directamente con el staff, quienes te ayudarán con los problemas o dudas que tengas. Simplemente tienes que elegir una opción con el menú de abajo el tipo de ayuda que necesitas y después explicar el problema que tienes."
       )
       .setColor("#FF0000")
-      .setThumbnail(PANEL_THUMBNAIL)
       .setTimestamp();
 
     const menu = new StringSelectMenuBuilder()
@@ -217,12 +214,11 @@ client.on("interactionCreate", async (interaction) => {
 
       const confirmId = `confirm_ticket_${userId}_${Date.now()}_${chosen}`;
       const cancelId = `cancel_ticket_${userId}_${Date.now()}_${chosen}`;
-      const faqId = `faq_ticket_${userId}_${Date.now()}`;
       
       const confirmBtn = new ButtonBuilder().setCustomId(confirmId).setLabel("Aceptar ✅").setStyle(ButtonStyle.Success);
       const cancelBtn = new ButtonBuilder().setCustomId(cancelId).setLabel("Cancelar ❌").setStyle(ButtonStyle.Danger);
-      const faqBtn = new ButtonBuilder().setCustomId(faqId).setLabel("📋 Ver Preguntas Frecuentes").setStyle(ButtonStyle.Secondary);
-      const row = new ActionRowBuilder().addComponents(confirmBtn, cancelBtn, faqBtn);
+      // Nota: botón de FAQ eliminado
+      const row = new ActionRowBuilder().addComponents(confirmBtn, cancelBtn);
 
       const embed = new EmbedBuilder()
         .setTitle("🟢 Confirmar apertura de ticket")
@@ -583,7 +579,7 @@ client.on("messageCreate", async (message) => {
 });
 
 client.once("ready", () => {
-  console.log(`✅ SirgioBOT conectado como ${client.user.tag}`);
+  console.log(`✅ ArrozBOT conectado como ${client.user.tag}`);
   client.user.setActivity("Secta de Arrozeros", { type: 3 });
 });
 
