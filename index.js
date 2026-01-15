@@ -584,7 +584,7 @@ client.on("messageCreate", async (message) => {
 
 client.once("ready", () => {
   console.log(`✅ SirgioBOT conectado como ${client.user.tag}`);
-  client.user.setActivity("LagSupport", { type: 3 });
+  client.user.setActivity("Secta de Arrozeros", { type: 3 });
 });
 
 const app = express();
